@@ -16,7 +16,10 @@ router.post('/posts', function (req, res) {
   if(!req.auth)
     return res.json({success: false, message: 'Zaloguj się!'})
   let post = new Post({
-    author: req.auth.username,
+    author: {
+      username: req.auth.username,
+      email: req.auth.email
+      },
     body: req.body.body
   })
   post.save(function (err, post) {

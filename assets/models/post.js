@@ -2,8 +2,13 @@ const mongoose = require('mongoose')
 
 let PostSchema = mongoose.Schema({
   author: {
-    type: String,
-    required: true
+    username: {
+      type: String,
+      required: true},
+    email: {
+      type: String,
+      required: true
+    }
   },
   body: {
     type: String,

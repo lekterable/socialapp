@@ -33,12 +33,13 @@ router.post('/users/login', (req, res)=>{
 router.post('/users/register',(req, res)=>{
   let newUser = new User({
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      email: req.body.email
   })
   bcrypt.genSalt(10,(err,salt)=>{
       bcrypt.hash(newUser.password, salt, (err, hash)=>{
         if(err)
-          throw err
+          return res.json({success: false, message: 'Niepoprawne hasło'})
         else {
           newUser.password = hash
           newUser.save((err)=>{

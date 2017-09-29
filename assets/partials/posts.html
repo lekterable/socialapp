@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="col-lg-10 col-lg-offset-1">
     <h1>Najnowsze posty</h1>
     <form role="form">
         <div class="form-group">
@@ -10,10 +11,23 @@
             </div>
         </div>
     </form>
-    <ul class="list-group">
-        <li ng-repeat="post in posts | orderBy:'-date'" class="list-group-item">
-            <strong>@{{ post.author }}</strong>
-            <span>{{ post.body }}</span>
+    <ul class="media-list">
+        <li ng-repeat="post in posts | orderBy:'-date'" class="media well well-sm" ng-class="{'myself text-right':isAuthor(post.author.username,currentUser.username)}">
+          <div ng-if="!isAuthor(post.author.username,currentUser.username)" class="media-left">
+            <a href="#">
+              <img gravatar class="media-object img-thumbnail" email="{{post.author.email}}" size="65" >
+            </a>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading"><strong>@{{post.author.username}}</strong></h3>
+            <p class="lead">{{post.body}}</p>
+          </div>
+          <div ng-if="isAuthor(post.author.username,currentUser.username)" class="media-right">
+            <a href="#">
+              <img gravatar class="media-object img-thumbnail" email="{{post.author.email}}" size="65" >
+            </a>
+          </div>
         </li>
     </ul>
+  </div>
 </div>
