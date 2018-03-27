@@ -44,19 +44,19 @@ angular.module('App',['ngRoute', 'ngStorage'])
 })
 .service('User', function($http, $localStorage) {
   this.authenticate = ()=>{
-    return $http.get('/users/authenticate')
+    return $http.get('/api/users/authenticate')
     .then((res)=>{
       return res.data
     })
   }
   this.register = (username, email, password)=>{
-    return $http.post('/users/register',{username: username, email: email, password: password})
+    return $http.post('/api/users/register',{username: username, email: email, password: password})
     .then((res)=>{
       return res.data
     })
   }
   this.login = (username, password)=>{
-    return $http.post('/users/login',{username: username, password: password})
+    return $http.post('/api/users/login',{username: username, password: password})
     .then((res)=>{
       if(res.data.success){
         $localStorage.token = res.data.message
@@ -73,13 +73,13 @@ angular.module('App',['ngRoute', 'ngStorage'])
 })
 .service('Post', function($http) {
   this.fetch = ()=>{
-    return $http.get('/posts')
+    return $http.get('/api/posts')
     .then((res)=>{
       return res.data
     })
   }
   this.create = (post)=>{
-    return $http.post('/posts', post)
+    return $http.post('/api/posts', post)
     .then((res)=>{
       return res.data
     })

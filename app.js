@@ -28,8 +28,8 @@ mongoose.connect(config.database,{useMongoClient: true},()=>{
 })
 
 //Routing
-app.use(require('./assets/routes/users.js'))
-app.use(require('./assets/routes/posts.js'))
+app.use('/api', require('./assets/routes/users.js'))
+app.use('/api', require('./assets/routes/posts.js'))
 
 //Nieznane ścieżki
 app.get('*',(req, res, next)=>{

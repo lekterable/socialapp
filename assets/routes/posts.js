@@ -1,5 +1,4 @@
 const router = require('express').Router()
-
 let Post = require('../models/post')
 
 router.get('/posts', function (req, res) {
