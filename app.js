@@ -1,31 +1,11 @@
-const express = require('express')
 const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
-mongoose.Promise = Promise
-const http = require('http')
-
-let config = require('./config/config')
-let io = require('socket.io')
+const express = require('express')
 let app = express()
-let server = http.createServer(app)
-io = io.listen(server)
-
-//Websocket
-io.on('connection', (socket)=>{
-  socket.on('new post', (post)=>{
-    io.emit('new post', {author: post.author, body: post.body})
-  })
-})
 
 //Middleware
 app.use(bodyParser.json())
 app.use(express.static(__dirname+'/assets'))
 app.use(require('./auth'))
-
-//Połączenie z bazą
-mongoose.connect(config.database,{useMongoClient: true},()=>{
-  console.log('Połączono z bazą')
-})
 
 //Routing
 app.use('/api', require('./assets/routes/users.js'))
@@ -37,7 +17,4 @@ app.get('*',(req, res, next)=>{
   res.redirect('/')
 })
 
-//Serwer
-server.listen(process.env.PORT || 3000,()=>{
-  console.log("Serwer nasłuchuje na porcie 3000")
-})
+module.exports = app

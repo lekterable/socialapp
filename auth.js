@@ -1,5 +1,5 @@
-let jwt = require('jsonwebtoken')
-let config = require('./config/config')
+const jwt = require('jsonwebtoken')
+const config = require('./config/config')
 
 module.exports = (req, res, next)=>{
   if (req.headers['x-auth']) {
