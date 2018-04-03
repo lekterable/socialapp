@@ -1,5 +1,5 @@
 const router = require('express').Router()
-let Post = require('../models/post')
+const Post = require('../models/post')
 
 router.get('/posts', function (req, res) {
   Post.find()
@@ -7,13 +7,14 @@ router.get('/posts', function (req, res) {
   .exec(function (err, posts) {
     if (err)
       throw err
-    res.json({success: true, message: posts})
+    return res.status(200).json({success: true, message: posts})
   })
 })
 
 router.post('/posts', function (req, res) {
+  
   if(!req.auth)
-    return res.json({success: false, message: 'Zaloguj się!'})
+    return res.status(401).json({success: false, message: 'Log in'})
   let post = new Post({
     author: {
       username: req.auth.username,
@@ -23,8 +24,8 @@ router.post('/posts', function (req, res) {
   })
   post.save(function (err, post) {
     if (err)
-      throw err
-    return res.json({success: true, message: post})
+      return res.status(400).json({success: false, message: 'Bad request'})
+    return res.status(201).json({success: true, message: post})
   })
 })
 

@@ -1,6 +1,12 @@
 const bodyParser = require('body-parser')
 const express = require('express')
+const config = require('./config/config')
 let app = express()
+const mongoose = require('mongoose')
+mongoose.Promise = Promise
+
+//Database connection
+mongoose.connect(config.database,{useMongoClient: true})
 
 //Middleware
 app.use(bodyParser.json())
@@ -11,9 +17,8 @@ app.use(require('./auth'))
 app.use('/api', require('./assets/routes/users.js'))
 app.use('/api', require('./assets/routes/posts.js'))
 
-//Nieznane ścieżki
+//Other routes
 app.get('*',(req, res, next)=>{
-  res.locals.user = req.user || null
   res.redirect('/')
 })
 

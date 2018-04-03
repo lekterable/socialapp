@@ -29,17 +29,17 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-              <li><a class="posts" href="/">Posty</a></li>
+              <li><a class="posts" href="/">Posts</a></li>
           </ul>
           <ul ng-if='!currentUser' class="nav navbar-nav navbar-right">
-              <li><a class="register" href="/users/register">Rejestracja</a></li>
-              <li><a class="login" href="/users/login">Login</a></li>
+              <li><a class="register" href="/users/register">Register</a></li>
+              <li><a class="login" href="/users/login">Log in</a></li>
           </ul>
           <ul ng-if='currentUser' class="nav navbar-nav navbar-right">
-              <li><a class="logout" href="#" ng-click='logout()'>Wyloguj</a></li>
+              <li><a class="logout" href="#" ng-click='logout()'>Logout</a></li>
           </ul>
           <p ng-if='currentUser' class='navbar-text navbar-right'>
-              Zalogowany jako {{currentUser.username}}
+              Logged in as {{currentUser.username}}
           </p>
         </div>
       </div>
