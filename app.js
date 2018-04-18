@@ -14,8 +14,8 @@ app.use(express.static(__dirname+'/assets'))
 app.use(require('./auth'))
 
 //Routing
-app.use('/api', require('./assets/routes/users.js'))
-app.use('/api', require('./assets/routes/posts.js'))
+app.use('/api', require('./routes/users.js'))
+app.use('/api', require('./routes/posts.js'))
 
 //Other routes
 app.get('*',(req, res, next)=>{
