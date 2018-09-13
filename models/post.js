@@ -4,7 +4,8 @@ let PostSchema = mongoose.Schema({
   author: {
     username: {
       type: String,
-      required: true},
+      required: true
+    },
     email: {
       type: String,
       required: true
