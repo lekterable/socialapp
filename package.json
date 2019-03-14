@@ -11,14 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.1",
-    "express": "^4.15.4",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
     "jsonwebtoken": "^8.0.1",
-    "mongoose": "^4.11.11",
-    "socket.io": "^2.0.3"
+    "mongoose": "^5.4.19",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
-    "jest": "^22.4.3",
+    "jest": "^24.5.0",
     "supertest": "^3.0.0"
   }
 }
